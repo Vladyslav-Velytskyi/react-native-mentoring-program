@@ -1,46 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  StyleSheet,
+  Image,
   View,
   TextInput,
+  NativeSyntheticEvent,
+  TextInputEndEditingEventData,
 } from 'react-native';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-const SearchContainer = () => {
+import styles from './styles';
+
+export const SearchContainer: React.FC = () => {
+  const [iconIsVisible, setIconIsVisible] = useState<boolean>(true);
+
+  const onFocus = (): void => {
+    setIconIsVisible(false);
+  };
+
+  const onEndEditing = (e: NativeSyntheticEvent<TextInputEndEditingEventData>): void => {
+    if (!e.nativeEvent.text) {
+      setIconIsVisible(true);
+    }
+  };
+
   return (
     <View style={styles.searchContainer}>
-      <EvilIcons style={styles.searchIcon} name="search" size={30} color="grey" />
-      <TextInput style={styles.searchInput} />
+      {iconIsVisible && (
+        <Image
+          source={require('../../assets/icon-search.png')}
+          style={styles.searchIcon}
+        />
+      )}
+      <TextInput
+        style={styles.searchInput}
+        onFocus={onFocus}
+        onEndEditing={onEndEditing}
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  searchContainer: {
-    flexDirection: 'row-reverse',
-    height: 74,
-    padding: 20,
-    shadowColor: '#000',
-    shadowOpacity: 30,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    elevation: 4,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-  },
-  searchIcon: {
-    position: 'absolute',
-    right: 25,
-  },
-  searchInput: {
-    flex: 1,
-    height: 34,
-    borderWidth: 1,
-    borderColor: '#8F8F8F',
-    borderRadius: 5,
-  },
-});
-
-export default SearchContainer;

@@ -5,17 +5,17 @@ import {
 } from 'react-query';
 
 import {
-  MainPage,
-  ProductDetailsPage,
-} from './src/pages';
+  ProductsScreen,
+  ProductDetailsScreen,
+} from './src/screens';
 
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <MainPage />
-      {/*<ProductDetailsPage id={1} />*/}
+      <ProductsScreen />
+      {/*<ProductDetailsScreen id={1} />*/}
     </QueryClientProvider>
   );
 };
