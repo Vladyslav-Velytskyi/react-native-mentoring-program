@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 
 import { Product } from '../interfaces';
 
-const useProduct = (id: number): {
+const useProduct = (id: string): {
   status: 'idle' | 'error' | 'loading' | 'success',
   product: { data: Product } | undefined,
 } => {

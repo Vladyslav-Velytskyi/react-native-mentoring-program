@@ -5,16 +5,13 @@ import React, {
 import {
   SafeAreaView,
   FlatList,
-  Text,
   RefreshControl,
-  Image,
 } from 'react-native';
 
 import styles from './styles';
 import { useProducts } from '../../queries';
 import { Product } from '../../interfaces';
 import {
-  Header,
   SearchContainer,
   SearchListItem,
 } from '../../components';
@@ -57,11 +54,6 @@ export const ProductsScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header>
-        <Image source={require('../../assets/icon-menu.png')} />
-        <Text style={styles.title}>Ecommerce Store</Text>
-        <Image source={require('../../assets/icon-cart.png')} />
-      </Header>
       <SearchContainer />
       {status === 'success' && products?.data &&  (
         <FlatList

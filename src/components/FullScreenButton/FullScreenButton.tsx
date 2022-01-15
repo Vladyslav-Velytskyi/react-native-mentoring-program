@@ -3,25 +3,32 @@ import {
   Text,
   Pressable,
   GestureResponderEvent,
+  ViewStyle,
 } from 'react-native';
 
-import styles from './styles';
+import buttonStyles from './styles';
 
-interface FullScreenButtonPropsInterface {
+type Props = {
   onPress: (event: GestureResponderEvent) => void,
-  title: string,
+  title: string | React.ReactElement,
+  style?: ViewStyle,
 };
 
-export const FullScreenButton: React.FC<FullScreenButtonPropsInterface> = ({
+export const FullScreenButton: React.FC<Props> = ({
   onPress,
   title,
+  style,
 }) => {
+  const buttonStyle = style
+    ? {...buttonStyles.button, ...style}
+    : buttonStyles.button; 
+
   return (
     <Pressable
-      style={styles.button}
+      style={buttonStyle}
       onPress={onPress}
     >
-      <Text style={styles.buttonText}>{title}</Text>
+      <Text style={buttonStyles.buttonText}>{title}</Text>
     </Pressable>
   );
 };
