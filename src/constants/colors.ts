@@ -1,0 +1,15 @@
+export const colors: { [key: string]: string } = {
+  BLUE_500: '#008ACE',
+  BLUE_300: '#00A8F3',
+  BLUE_200: '#8ED8F8',
+  NEUTRAL_1000: '#1C1F27',
+  NEUTRAL_700: '#4A4A4A',
+  NEUTRAL_500: '#8F8F8F',
+  NEUTRAL_300: '#C3C3C3',
+  NEUTRAL_100: '#F7F7F7',
+  ORANGE_300: '#FEB96B',
+  ORANGE_500: '#F39649',
+  RED: '#DD6B55',
+  GREEN: '#A5DC86',
+  GREEN_DARK: '#A5DC86',
+};
