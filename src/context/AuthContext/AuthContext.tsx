@@ -1,5 +1,24 @@
-import { createContext } from 'react';
+import {
+  createContext,
+  Dispatch,
+} from 'react';
 
-import { AuthContexType } from '../../interfaces';
+type stateType = {
+  isLoading: boolean,
+  isSignout: boolean,
+  userToken: string | null,
+};
 
-export const AuthContext = createContext<AuthContexType>({});
+const initialState: stateType = {
+  isLoading: false,
+  isSignout: false,
+  userToken: null,
+}
+
+export const AuthContext = createContext<{
+  state: stateType,
+  dispatch: Dispatch<any>,
+}>({
+  state: initialState,
+  dispatch: () => null,
+});

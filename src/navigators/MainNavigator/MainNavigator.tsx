@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Pressable,
   Image,
+  View,
 } from 'react-native';
 import {
   createStackNavigator,
@@ -16,10 +17,12 @@ import {
   ProductsScreen,
   ProductDetailsScreen,
   SignUpScreen,
+  ForgotPasswordScreen,
 } from '../../screens';
 import {
   ModalView,
   LoginModal,
+  LogoutModal,
 } from '../../components';
 import {
   Navigation,
@@ -28,7 +31,10 @@ import {
 
 const Stack = createStackNavigator<RootStackParamsList>();
 
-export const StackNavigator: React.FC = () => {
+export const MainNavigator: React.FC = () => {
+  //TODO implement likes functionality
+  const [likes, setLike] = useState<boolean>(false);
+
   const moveToCartScreen = (navigation: any) => (): void => { navigation.navigate('Cart') };
   const toggleDrawer = (navigation: any) => (): void => { navigation.toggleDrawer() };
   const goBack = (navigation: any) => (): void => { navigation.goBack() };
@@ -102,6 +108,43 @@ export const StackNavigator: React.FC = () => {
     />
   );
 
+  const getAddToWishListModal = ({ navigation }: { navigation: Navigation}): React.ReactElement => (
+    <ModalView
+      visible={true}
+      title="Product added to your wishlist successfully"
+      icon={<Image source={require('../../assets/icon-success-circle.png')}/>}
+      navigation={navigation}
+    />
+  );
+
+  const productsDetailOptions = ({ navigation }: { navigation: Navigation }): StackNavigationOptions => ({
+    headerTitle: '',
+    headerLeft: (): React.ReactElement => (
+      <Pressable
+        style={styles.headerLeftIcon}
+        onPress={goBack(navigation)}
+      >
+        <Image source={require('../../assets/icon-arrow.png')}/>
+      </Pressable>
+    ),
+    headerRight: (): React.ReactElement => (
+      <View style={styles.headerButtonContainer}>
+        <Pressable
+          style={styles.headerRightIcon}
+          onPress={(): void => { navigation.navigate('AddToWishListModal'); }}
+        >
+          <Image source={require('../../assets/icon-heart.png')} />
+        </Pressable>
+        <Pressable
+          style={styles.headerRightIcon}
+          onPress={moveToCartScreen(navigation)}
+        >
+          <Image source={require('../../assets/icon-cart.png')} />
+        </Pressable>
+      </View>
+    ),
+  });
+
   return (
     <Stack.Navigator
       initialRouteName="Home"
@@ -116,6 +159,7 @@ export const StackNavigator: React.FC = () => {
           <Stack.Screen
             name="ProductDetails"
             component={ProductDetailsScreen}
+            options={productsDetailOptions}
           />
         </Stack.Group>
         <Stack.Screen
@@ -134,7 +178,7 @@ export const StackNavigator: React.FC = () => {
           />
           <Stack.Screen
             name="ForgotPasswordScreen"
-            component={SignUpScreen}
+            component={ForgotPasswordScreen}
           />
         </Stack.Group>
       </Stack.Group>
@@ -150,6 +194,14 @@ export const StackNavigator: React.FC = () => {
         <Stack.Screen
           name="ChooseColor"
           component={getChooseColorModal}
+        />
+        <Stack.Screen
+          name="LogoutModal"
+          component={LogoutModal}
+        />
+        <Stack.Screen
+          name="AddToWishListModal"
+          component={getAddToWishListModal}
         />
       </Stack.Group>
     </Stack.Navigator>

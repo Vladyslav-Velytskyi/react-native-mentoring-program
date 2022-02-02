@@ -1,4 +1,4 @@
 export * from './CartNavigator';
-export * from './DrawerNavigator';
+export * from './SideMenuNavigator';
 export * from './MyAccountNavigator';
-export * from './StackNavigator';
+export * from './MainNavigator';

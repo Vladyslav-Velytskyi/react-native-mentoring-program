@@ -8,7 +8,12 @@ export default StyleSheet.create({
     backgroundColor: colors.NEUTRAL_100,
   },
   inputsContainer: {
-    marginTop: 50,
+    marginTop: 20,
+  },
+  imageContainer: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: 40,
   },
   buttonText: {
     color: colors.NEUTRAL_100,
@@ -26,6 +31,6 @@ export default StyleSheet.create({
     marginBottom: 35,
   },
   fullScreenButton: {
-    marginBottom: 10,
+    marginTop: 20,
   },
 });

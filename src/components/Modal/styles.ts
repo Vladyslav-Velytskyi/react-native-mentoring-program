@@ -27,6 +27,8 @@ export default StyleSheet.create({
     fontWeight: '700',
     fontSize: 20,
     marginVertical: 5,
+    width: 220,
+    textAlign: 'center',
   },
   description: {
     color: colors.NEUTRAL_500,

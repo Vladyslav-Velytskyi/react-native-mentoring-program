@@ -1,10 +1,8 @@
+import { Dispatch } from 'react';
+
+import { AuthStateType } from '.';
+
 export type AuthContexType = {
-  state: {
-    isLoading: boolean,
-    isSignout: boolean,
-    userToken: string | null,
-  },
-  signIn: (data: any) => Promise<void>,
-  signOut: () => void,
-  signUp: (data: any) => Promise<void>,
+  state: AuthStateType,
+  dispatch: Dispatch<any>,
 };

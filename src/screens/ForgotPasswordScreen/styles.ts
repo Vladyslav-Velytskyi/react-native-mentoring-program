@@ -10,22 +10,13 @@ export default StyleSheet.create({
   inputsContainer: {
     marginTop: 50,
   },
-  buttonText: {
-    color: colors.NEUTRAL_100,
-  },
-  greyButton: {
-    backgroundColor: colors.NEUTRAL_500,
-    position: 'absolute',
-    bottom: 30,
-    left: 20,
-    padding: 0,
-  },
-  leftLink: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginBottom: 35,
-  },
   fullScreenButton: {
     marginBottom: 10,
+    marginTop: 25,
+  },
+  description: {
+    textAlign: 'center',
+    marginTop: 60,
+    color: colors.NEUTRAL_700,
   },
 });

@@ -13,8 +13,10 @@ export default StyleSheet.create({
     color: colors.NEUTRAL_100,
     fontWeight: '400',
   },
+  headerButtonContainer: {
+    flexDirection: 'row',
+  },
   header: {
-    paddingHorizontal: 20,
     height: 55,
     backgroundColor: colors.BLUE_500,
     shadowOffset: {

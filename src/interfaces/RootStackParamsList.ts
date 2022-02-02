@@ -12,4 +12,6 @@ export type RootStackParamsList = {
   MyWishList: undefined;
   MyCart: undefined;
   MyOrders: undefined;
+  LogoutModal: undefined;
+  AddToWishListModal: undefined;
 };

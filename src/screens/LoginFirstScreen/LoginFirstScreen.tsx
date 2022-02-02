@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -10,7 +10,11 @@ import {
   FullScreenButton,
   Link,
 } from '../../components';
-import { Navigation } from '../../interfaces';
+import {
+  AuthContexType,
+  Navigation,
+} from '../../interfaces';
+import { AuthContext } from '../../context';
 
 type Props = {
   navigation: Navigation,
@@ -19,6 +23,7 @@ type Props = {
 export const LoginFirstScreen: React.FC<Props> = ({ navigation }) => {
   const onPressLoginButton = (): void => { navigation.navigate('LoginScreen') };
   const onPressLink = (): void => { navigation.navigate('SignUpScreen') };
+  const { state } = useContext<AuthContexType>(AuthContext);
 
   return (
     <SafeAreaView style={styles.container}>

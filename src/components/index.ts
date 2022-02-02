@@ -10,3 +10,5 @@ export * from './CartScreen';
 export * from './Link';
 export * from './Input';
 export * from './Button';
+export * from './LinkTitle';
+export * from './LogoutModal';

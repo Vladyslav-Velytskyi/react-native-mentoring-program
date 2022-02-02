@@ -3,3 +3,8 @@ export * from './ProductDetailsScreen';
 export * from './LoginScreen';
 export * from './SignUpScreen';
 export * from './LoginFirstScreen';
+export * from './ForgotPasswordScreen';
+export * from './MyProfileScreen';
+export * from './MyWishListScreen';
+export * from './MyCartScreen';
+export * from './MyOrdersScreen';

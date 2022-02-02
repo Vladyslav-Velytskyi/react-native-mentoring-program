@@ -5,7 +5,6 @@ import React, {
 import {
   SafeAreaView,
   Text,
-  Pressable,
   View,
   Image,
 } from 'react-native';
@@ -15,6 +14,7 @@ import {
   FullScreenButton,
   Input,
   Link,
+  LinkTitle,
 } from '../../components';
 import {
   AuthContexType,
@@ -27,40 +27,46 @@ type Props = {
 };
 
 type DataTypes = {
-  email: string,
+  username: string,
   password: string,
 };
 
 export const LoginScreen: React.FC<Props> = ({ navigation }) => {
-  const { signIn } = useContext<AuthContexType>(AuthContext);
+  const { dispatch } = useContext<AuthContexType>(AuthContext);
   const [data, setData] = useState<DataTypes>({
-    email: '',
+    username: '',
     password: '',
   });
-
-  const onPressTitle = (): void => { navigation.navigate('Home') };
 
   const onPressLink = (): void => { navigation.navigate('SignUpScreen') };
 
   const onPressForgotPassword = (): void => { navigation.navigate('ForgotPasswordScreen') };
-  
-  const onPressSignIn = (): void => { signIn(data); };
 
   const onPressSkipLogin = (): void => { navigation.navigate('Home') };
 
+  const signIn = (): void => {
+    fetch(`https://rn-mentoring.herokuapp.com/spree_oauth/token`, {
+      method: 'POST',
+      body: JSON.stringify({
+        grand_type: 'password',
+        password: data.password,
+        username: data.username,
+      }),
+    }).then(res => res.json())
+      .then(data => {
+        dispatch({ type: 'SIGN_IN', userToken: data.access_token });
+      })
+      .catch(() => { navigation.navigate('Home');});
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable
-        style={styles.titleContainer}
-        onPress={onPressTitle}
-      >
-        <Text style={styles.title}>Ecommerce Store</Text>
-      </Pressable>
-
+      <LinkTitle />
+      <Text>{data.username} {data.password}</Text>
       <View style={styles.inputsContainer}>
         <Input
           label="Email Address"
-          onChange={(email: string): void => setData({ ...data, email })}
+          onChange={(username: string): void => setData({ ...data, username })}
         />
 
         <Input
@@ -78,7 +84,7 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
       <FullScreenButton
         title='SIGN IN'
-        onPress={onPressSignIn}
+        onPress={signIn}
         style={styles.fullScreenButton}
       />
 
