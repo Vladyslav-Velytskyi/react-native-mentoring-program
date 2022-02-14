@@ -3,7 +3,6 @@ import {
   SafeAreaView,
   View,
   Text,
-  Image,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
@@ -13,16 +12,28 @@ import { useProduct } from '../../queries';
 import {
   DetailsSection,
   FullScreenButton,
-  Header,
   ImageCarousel,
 } from '../../components';
+import { Navigation } from '../../interfaces';
 
-interface ProductDetailsScreenPropsInterface {
-  id: number,
+type Props = {
+  route: {
+    key: string,
+    name: string,
+    params: {
+      id: string,
+    },
+  },
+  navigation: Navigation,
 };
 
-export const ProductDetailsScreen: React.FC<ProductDetailsScreenPropsInterface> = ({
-  id,
+export const ProductDetailsScreen: React.FC<Props> = ({
+  route: {
+    params: {
+      id,
+    },
+  },
+  navigation,
 }) => {
   const {
     product,
@@ -35,22 +46,16 @@ export const ProductDetailsScreen: React.FC<ProductDetailsScreenPropsInterface> 
 
   const { attributes } = product.data;
 
+  const onAdd = (): void => {
+    //TODO add to cart functionality
+    navigation.navigate('ProductAdded');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Header>
-        <View style={styles.iconContainer}>
-          <Image source={require('../../assets/icon-arrow.png')} />
-        </View>
-        <Image
-          source={require('../../assets/icon-heart.png')}
-          style={styles.iconHeart}
-        />
-        <Image source={require('../../assets/icon-cart.png')} />
-      </Header>
-
       <ScrollView>
         <View style={styles.productDetailsContainer}>
-          <ImageCarousel id={id} />
+          <ImageCarousel id={Number(id)} />
 
           <View style={styles.productMainInfo}>
             <Text style={styles.productName}>{attributes.name}</Text>
@@ -72,7 +77,7 @@ export const ProductDetailsScreen: React.FC<ProductDetailsScreenPropsInterface> 
           />
 
           <FullScreenButton
-            onPress={(): void => {}}
+            onPress={onAdd}
             title="ADD TO CART"
           />
         </View>
