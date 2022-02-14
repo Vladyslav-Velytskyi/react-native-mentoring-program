@@ -11,14 +11,15 @@ export default StyleSheet.create({
     paddingHorizontal: 15,
     fontSize: 15,
   },
-  inputLabel: {
+  labelContainer: {
     position: 'absolute',
-    fontSize: 12,
     backgroundColor: colors.NEUTRAL_100,
-    top: 18,
-    left: 15,
+    top: 14,
     zIndex: 2,
-    paddingHorizontal: 3,
+  },
+  inputLabel: {
+    fontSize: 16,
     color: colors.NEUTRAL_500,
+    marginHorizontal: 2,
   },
 });

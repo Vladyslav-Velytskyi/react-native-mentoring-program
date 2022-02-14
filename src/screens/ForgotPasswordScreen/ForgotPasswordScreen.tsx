@@ -48,6 +48,7 @@ export const ForgotPasswordScreen: React.FC<Props> = ({ navigation }) => {
         <Input
           label="Email Address"
           onChange={(email: string): void => setData({ ...data, email })}
+          value={data.email}
         />
       </View>
 

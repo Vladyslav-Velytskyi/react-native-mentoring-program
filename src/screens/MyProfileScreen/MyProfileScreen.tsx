@@ -54,6 +54,7 @@ export const MyProfileScreen: React.FC<Props> = ({ navigation }) => {
       <Input
         label="Full Name"
         onChange={(fullName: string): void => setData({ ...data, fullName })}
+        value={data.fullName}
       />
 
       <View style={styles.imageContainer}>
@@ -64,21 +65,25 @@ export const MyProfileScreen: React.FC<Props> = ({ navigation }) => {
         <Input
           label="Mobile Number"
           onChange={(mobileNumber: string): void => setData({ ...data, mobileNumber })}
+          value={data.mobileNumber}
         />
 
         <Input
           label="City"
           onChange={(city: string): void => setData({ ...data, city })}
+          value={data.city}
         />
 
         <Input
           label="Locality, area or street"
           onChange={(street: string): void => setData({ ...data, street })}
+          value={data.street}
         />
 
         <Input
           label="Flat no., Building name"
           onChange={(flat: string): void => setData({ ...data, flat })}
+          value={data.flat}
         />
       </View>
 
