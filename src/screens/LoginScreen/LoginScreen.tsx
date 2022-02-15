@@ -56,7 +56,7 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
       .then(data => {
         dispatch({ type: 'SIGN_IN', userToken: data.access_token });
       })
-      .catch(() => { navigation.navigate('Home');});
+      .catch(() => { navigation.navigate('Home'); });
   };
 
   return (
@@ -67,11 +67,13 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
         <Input
           label="Email Address"
           onChange={(username: string): void => setData({ ...data, username })}
+          value={data.username}
         />
 
         <Input
           label="Password"
           onChange={(password: string): void => setData({ ...data, password })}
+          value={data.password}
         />
       </View>
 

@@ -1,15 +1,31 @@
-import React, { Reducer, useMemo } from 'react';
+import React, {
+  Reducer,
+  useMemo,
+} from 'react';
 import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  View,
+  Image,
+} from 'react-native';
+import {
+  NavigationContainer,
+  useNavigation,
+} from '@react-navigation/native';
+import { useNetInfo } from "@react-native-community/netinfo";
 
 import { SideMenuNavigator } from './src/navigators';
 import { AuthContext } from './src/context';
 import {
   AuthContexType,
+  Navigation,
 } from './src/interfaces';
+import {
+  ModalView,
+  Button,
+} from './src/components';
 
 const queryClient = new QueryClient();
 
@@ -58,6 +74,32 @@ const App: React.FC = () => {
   const [state, dispatch] = React.useReducer<Reducer<stateType, actionType>>(reducer, initialState);
 
   const authContext = useMemo<AuthContexType>(() => ({ state, dispatch }), [state, dispatch]);
+
+  const netInfo = useNetInfo();
+  const navigation: Navigation = useNavigation();
+
+  if(!netInfo.isConnected) {
+    <ModalView
+      visible={true}
+      icon={<Image source={require('./src/assets/icon-warning-circle.png')} />}
+      title=""
+      navigation={navigation}
+      buttonGroup={(
+        <View>
+          <Button
+            title='TRY AGAIN'
+            onPress={() => {}}
+            type='blue'
+          />
+          <Button
+            title='CLOSE'
+            onPress={() => {}}
+            type='blue'
+          />
+        </View>
+      )}
+    />
+  }
 
   return (
     <AuthContext.Provider value={authContext}>

@@ -66,21 +66,25 @@ export const SignUpScreen: React.FC<Props> = ({ navigation }) => {
         <Input
           label='Full Name'
           onChange={(full_name: string): void => { setData({ ...data, public_metadata: { full_name } }); }}
+          value={data.public_metadata.full_name}
         />
 
         <Input
           label='Email Address'
           onChange={(email: string): void => { setData({ ...data, email }); }}
+          value={data.email}
         />
 
         <Input
           label='Password'
           onChange={(password: string): void => { setData({ ...data, password }); }}
+          value={data.password}
         />
 
         <Input
           label='Confirm Password'
           onChange={(password_confirmation: string): void => { setData({ ...data, password_confirmation }); }}
+          value={data.password_confirmation}
         />
       </View>
 
